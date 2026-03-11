@@ -2,14 +2,14 @@
   <div class="grid grid-cols-1 md:grid-cols-[1fr_360px] gap-8 items-start max-w-6xl mx-auto w-full">
 
     <!-- Canvas Area -->
-    <div class="flex flex-col items-center gap-6 bg-white/60 dark:bg-[#0d0d1c]/40 backdrop-blur-xl p-6 md:p-10 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] border border-white/40 dark:border-[#632bfc]/10 transition-colors duration-300 relative overflow-hidden">
+    <div class="flex flex-col items-center gap-6 bg-white/60 dark:bg-[#0d0d1c]/40 backdrop-blur-xl p-6 md:p-10 rounded-md shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] border border-[#9c6ffd] dark:border-[#632bfc]/10 transition-colors duration-300 relative overflow-hidden">
       <!-- Decorative background glow -->
       <div class="absolute -top-40 -left-40 w-80 h-80 bg-[#632bfc] rounded-full mix-blend-multiply filter blur-[120px] opacity-10 dark:opacity-20 pointer-events-none"></div>
       <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-[#632bfc] rounded-full mix-blend-multiply filter blur-[120px] opacity-10 dark:opacity-20 pointer-events-none"></div>
 
       <div
         ref="containerRef"
-        class="relative w-full max-w-[500px] rounded-2xl overflow-hidden shadow-2xl dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_25px_60px_rgba(0,0,0,0.5),0_0_80px_rgba(99,43,252,0.15)] bg-slate-100 dark:bg-[#0a0a18] transition-all duration-300 z-10"
+        class="relative w-full max-w-[500px] rounded-md overflow-hidden shadow-2xl dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_25px_60px_rgba(0,0,0,0.5),0_0_80px_rgba(99,43,252,0.15)] bg-slate-100 dark:bg-[#0a0a18] transition-all duration-300 z-10"
         :class="hasPhoto ? 'ring-2 ring-white/50 dark:ring-[#632bfc]/30' : ''"
       >
         <canvas
@@ -51,7 +51,7 @@
     </div>
 
     <!-- Controls Panel -->
-    <div class="flex flex-col gap-6 bg-white/80 dark:bg-[#0d0d1c]/60 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] border border-white/60 dark:border-white/5 border-t-[4px] border-t-[#632bfc] rounded-3xl p-6 md:p-8 md:sticky md:top-[150px] transition-colors duration-300 relative overflow-hidden">
+    <div class="flex flex-col gap-6 bg-white/80 dark:bg-[#0d0d1c]/60 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] border border-[#9c6ffd] dark:border-white/5  rounded-md p-6 md:p-8 md:sticky md:top-[150px] transition-colors duration-300 relative overflow-hidden">
       <!-- Subtle top inner glow -->
       <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#632bfc]/5 to-transparent pointer-events-none"></div>
 
