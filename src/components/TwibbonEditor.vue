@@ -51,7 +51,7 @@
     </div>
 
     <!-- Controls Panel -->
-    <div class="flex flex-col gap-6 bg-white/80 dark:bg-[#0d0d1c]/60 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] border border-[#9c6ffd] dark:border-white/5  rounded-md p-6 md:p-8 md:sticky md:top-[150px] transition-colors duration-300 relative overflow-hidden">
+    <div class="flex flex-col gap-6 bg-white/80 dark:bg-[#0d0d1c]/60 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] border border-[#9c6ffd] dark:border-white/5  rounded-md p-6 md:p-8 md:sticky md:top-[0px] transition-colors duration-300 relative overflow-hidden">
       <!-- Subtle top inner glow -->
       <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#632bfc]/5 to-transparent pointer-events-none"></div>
 
