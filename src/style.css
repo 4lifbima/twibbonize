@@ -10,8 +10,10 @@
   --border:     #1e1e3a;
   --gold:       #d4af37;
   --gold-light: #ffd700;
-  --purple:     #7c3aed;
-  --purple-l:   #a855f7;
+  --primary:    #632bfc;
+  --primary-l:  #9c6ffd;
+  --purple:     #632bfc;
+  --purple-l:   #9c6ffd;
   --pink:       #ec4899;
   --text:       #f0f0ff;
   --text-muted: #7070a0;
@@ -54,21 +56,21 @@ img { max-width: 100%; display: block; }
 button, input, select, textarea { font-family: inherit; }
 
 ::selection {
-  background: rgba(124, 58, 237, 0.35);
+  background: rgba(99, 43, 252, 0.35);
   color: #fff;
 }
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
-  background: rgba(124, 58, 237, 0.4);
+  background: rgba(99, 43, 252, 0.4);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 58, 237, 0.65);
+  background: rgba(99, 43, 252, 0.65);
 }
 
 :focus-visible {
-  outline: 2px solid rgba(124, 58, 237, 0.7);
+  outline: 2px solid rgba(99, 43, 252, 0.7);
   outline-offset: 2px;
 }

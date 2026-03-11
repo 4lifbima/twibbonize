@@ -7,7 +7,6 @@ import TwibbonEditor from './components/TwibbonEditor.vue'
 const editorRef = ref(null)
 
 </script>
-
 <template>
   <div class="flex flex-col min-h-screen bg-slate-50 dark:bg-app-bg text-[#f0f0ff] transition-colors duration-300">
     <Navbar />
@@ -24,7 +23,6 @@ const editorRef = ref(null)
           />
         </div>
       </div>
-
     </main>
     
     <Footer />

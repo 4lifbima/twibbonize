@@ -2,10 +2,15 @@
   <div class="grid grid-cols-1 md:grid-cols-[1fr_360px] gap-8 items-start max-w-6xl mx-auto w-full">
 
     <!-- Canvas Area -->
-    <div class="flex flex-col items-center gap-2 bg-white dark:bg-[#0d0d1c]/40 p-6 md:p-8 rounded-[5px] shadow-lg dark:shadow-none border border-slate-100 dark:border-white/[0.05] transition-colors duration-300">
+    <div class="flex flex-col items-center gap-6 bg-white/60 dark:bg-[#0d0d1c]/40 backdrop-blur-xl p-6 md:p-10 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] border border-white/40 dark:border-[#632bfc]/10 transition-colors duration-300 relative overflow-hidden">
+      <!-- Decorative background glow -->
+      <div class="absolute -top-40 -left-40 w-80 h-80 bg-[#632bfc] rounded-full mix-blend-multiply filter blur-[120px] opacity-10 dark:opacity-20 pointer-events-none"></div>
+      <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-[#632bfc] rounded-full mix-blend-multiply filter blur-[120px] opacity-10 dark:opacity-20 pointer-events-none"></div>
+
       <div
         ref="containerRef"
-        class="relative w-full max-w-[500px] rounded-[5px] overflow-hidden shadow-2xl dark:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_25px_60px_rgba(0,0,0,0.7),0_0_40px_rgba(124,58,237,0.08)] bg-slate-100 dark:bg-[#0a0a18] transition-colors duration-300"
+        class="relative w-full max-w-[500px] rounded-2xl overflow-hidden shadow-2xl dark:shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_25px_60px_rgba(0,0,0,0.5),0_0_80px_rgba(99,43,252,0.15)] bg-slate-100 dark:bg-[#0a0a18] transition-all duration-300 z-10"
+        :class="hasPhoto ? 'ring-2 ring-white/50 dark:ring-[#632bfc]/30' : ''"
       >
         <canvas
           ref="canvasRef"
@@ -30,28 +35,30 @@
         >
           <div class="text-center text-slate-600 dark:text-white/70 px-6 transform group-hover:scale-105 transition-transform duration-300">
             <div class="flex justify-center mb-4">
-              <div class="w-16 h-16 rounded-full bg-violet-100 dark:bg-white/10 flex items-center justify-center text-violet-600 dark:text-white/80 shadow-lg">
-                <Icon icon="ph:upload-simple-bold" class="w-8 h-8" />
+              <div class="w-20 h-20 rounded-full bg-[#632bfc]/10 dark:bg-[#632bfc]/20 flex items-center justify-center text-[#632bfc] shadow-lg ring-2 ring-[#632bfc]/20 group-hover:bg-[#632bfc]/20 group-hover:ring-[#632bfc]/40 transition-all duration-300">
+                <Icon icon="ph:upload-simple-bold" class="w-9 h-9" />
               </div>
             </div>
             <p class="text-xl font-bold text-slate-800 dark:text-white/90 mb-2">Upload Your Photo</p>
-            <span class="text-sm font-medium text-slate-500 dark:text-white/50 bg-slate-200/50 dark:bg-black/20 px-3 py-1 rounded-full">JPG, PNG, WEBP — up to 15 MB</span>
+            <span class="text-sm font-medium text-slate-500 dark:text-white/50 bg-slate-200/50 dark:bg-black/20 px-3 py-1 rounded-full">JPG, PNG, WEBP - up to 15 MB</span>
           </div>
         </label>
       </div>
-      <p v-if="hasPhoto" class="flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-white/40 text-center bg-slate-100 dark:bg-white/5 px-4 py-2 rounded-full mt-2 transition-colors duration-300">
-        <Icon icon="ph:hand-grabbing-fill" class="text-violet-500" />
+      <p v-if="hasPhoto" class="flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-white/40 text-center bg-white/80 dark:bg-white/5 px-5 py-2.5 rounded-full mt-2 transition-colors duration-300 shadow-sm dark:shadow-none border border-slate-200/50 dark:border-white/5 z-10">
+        <Icon icon="ph:hand-grabbing-fill" class="text-[#632bfc] w-4 h-4" />
         Drag to pan • Scroll/pinch to zoom
       </p>
     </div>
 
     <!-- Controls Panel -->
-    <div class="flex flex-col gap-6 bg-white dark:bg-[#0d0d1c]/70 shadow-xl dark:shadow-none border border-slate-100 dark:border-white/[0.07] rounded-[5px] p-6 md:p-8 md:sticky md:top-[90px] transition-colors duration-300">
+    <div class="flex flex-col gap-6 bg-white/80 dark:bg-[#0d0d1c]/60 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] border border-white/60 dark:border-white/5 border-t-[4px] border-t-[#632bfc] rounded-3xl p-6 md:p-8 md:sticky md:top-[150px] transition-colors duration-300 relative overflow-hidden">
+      <!-- Subtle top inner glow -->
+      <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#632bfc]/5 to-transparent pointer-events-none"></div>
 
       <!-- Photo Control -->
       <div class="flex flex-col gap-3">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-white/45 flex items-center gap-1.5">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#632bfc]/70 dark:text-[#9c6ffd]/70 flex items-center gap-1.5">
             <Icon icon="ph:image-square-fill" /> Photo
           </span>
           <button v-if="hasPhoto" @click="removePhoto" class="text-xs font-bold text-red-500 hover:text-red-600 dark:text-red-400/80 dark:hover:text-red-400 flex items-center gap-1 bg-red-50 dark:bg-red-500/10 px-2 py-1 rounded-md transition-colors cursor-pointer border-none">
@@ -60,10 +67,12 @@
         </div>
         <label
           for="photo-input"
-          class="flex items-center justify-center gap-2 py-3.5 px-4 bg-violet-50 hover:bg-violet-100 dark:bg-violet-600/15 border-2 border-dashed border-violet-300 dark:border-violet-500/50 rounded-xl text-violet-600 dark:text-violet-300 text-sm font-bold cursor-pointer dark:hover:bg-violet-600/30 hover:border-solid transition-all"
+          class="group flex flex-col items-center justify-center gap-3 py-6 px-4 bg-slate-50 hover:bg-[#632bfc]/5 dark:bg-[#632bfc]/5 border-2 border-dashed border-slate-200 hover:border-[#632bfc]/50 dark:border-[#632bfc]/30 rounded-2xl text-[#632bfc] dark:text-[#9c6ffd] text-sm font-bold cursor-pointer dark:hover:bg-[#632bfc]/10 transition-all z-10"
         >
-          <Icon :icon="hasPhoto ? 'ph:arrows-clockwise-bold' : 'ph:camera-plus-bold'" class="w-5 h-5" />
-          {{ hasPhoto ? 'Change Photo' : 'Upload Photo' }}
+          <div class="w-12 h-12 rounded-full bg-white dark:bg-[#632bfc]/20 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+            <Icon :icon="hasPhoto ? 'ph:arrows-clockwise-bold' : 'ph:camera-plus-bold'" class="w-6 h-6" />
+          </div>
+          {{ hasPhoto ? 'Change Photo' : 'Upload New Photo' }}
         </label>
         <input id="photo-input" ref="fileInputRef" type="file" accept="image/*" @change="handlePhotoUpload" class="hidden" />
       </div>
@@ -73,17 +82,17 @@
       <!-- Zoom -->
       <div v-if="hasPhoto" class="flex flex-col gap-3">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-white/45 flex items-center gap-1.5">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#632bfc]/70 dark:text-[#9c6ffd]/70 flex items-center gap-1.5">
             <Icon icon="ph:magnifying-glass-plus-fill" /> Zoom
           </span>
-          <span class="text-xs font-bold text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-500/20 px-2 py-0.5 rounded-md">{{ Math.round(zoom * 100) }}%</span>
+          <span class="text-xs font-bold text-[#632bfc] dark:text-[#9c6ffd] bg-[#632bfc]/5 dark:bg-[#632bfc]/20 px-2 py-0.5 rounded-md">{{ Math.round(zoom * 100) }}%</span>
         </div>
         <div class="flex items-center gap-3">
-          <button @click="zoom = Math.max(0.5, zoom - 0.15); render()" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-600 dark:text-white text-lg cursor-pointer transition-colors border-none">
+          <button @click="zoom = Math.max(0.5, zoom - 0.15); render()" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-[#632bfc] dark:bg-white/10 dark:hover:bg-[#632bfc] text-slate-600 hover:text-white dark:text-white/70 dark:hover:text-white text-lg cursor-pointer transition-all border-none">
             <Icon icon="ph:minus-bold" />
           </button>
-          <input type="range" v-model.number="zoom" min="0.5" max="4" step="0.05" @input="render" class="flex-1 h-2 rounded-full appearance-none bg-slate-200 dark:bg-white/10 accent-violet-600 dark:accent-violet-500 cursor-pointer" />
-          <button @click="zoom = Math.min(4, zoom + 0.15); render()" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-600 dark:text-white text-lg cursor-pointer transition-colors border-none">
+          <input type="range" v-model.number="zoom" min="0.5" max="4" step="0.05" @input="render" class="flex-1 h-2 rounded-full appearance-none bg-slate-200 dark:bg-white/10 accent-[#632bfc] cursor-pointer" />
+          <button @click="zoom = Math.min(4, zoom + 0.15); render()" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-[#632bfc] dark:bg-white/10 dark:hover:bg-[#632bfc] text-slate-600 hover:text-white dark:text-white/70 dark:hover:text-white text-lg cursor-pointer transition-all border-none">
             <Icon icon="ph:plus-bold" />
           </button>
         </div>
@@ -94,31 +103,33 @@
       <!-- Caption -->
       <div class="flex flex-col gap-3">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-white/45 flex items-center gap-1.5">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#632bfc]/70 dark:text-[#9c6ffd]/70 flex items-center gap-1.5">
             <Icon icon="ph:text-t-fill" /> Caption
           </span>
           <span class="text-xs font-bold text-slate-400 dark:text-white/30">{{ caption.length }}/60</span>
         </div>
-        <div class="relative">
+        <div class="relative z-10">
           <input
             v-model="caption"
             type="text"
             maxlength="60"
             placeholder="Type your caption here..."
             @input="render"
-            class="w-full pl-10 pr-4 py-3.5 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-[#f0f0ff] text-sm font-medium placeholder-slate-400 dark:placeholder-white/30 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 dark:focus:border-violet-500/60 transition-all duration-300"
+            class="w-full pl-12 pr-4 py-4 bg-white dark:bg-[#0a0a18] border border-slate-200 dark:border-white/10 rounded-2xl text-slate-800 dark:text-[#f0f0ff] text-sm font-medium placeholder-slate-400 dark:placeholder-white/30 outline-none focus:border-[#632bfc] focus:ring-4 focus:ring-[#632bfc]/10 dark:focus:border-[#632bfc]/60 transition-all duration-300 shadow-sm inset-y-0"
           />
-          <Icon icon="ph:magic-wand-fill" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-white/30 w-5 h-5" />
+          <div class="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-50 dark:bg-white/5 flex items-center justify-center">
+            <Icon icon="ph:magic-wand-fill" class="text-slate-400 dark:text-white/40 w-4 h-4" />
+          </div>
         </div>
       </div>
 
       <!-- Caption Style -->
-      <div v-if="caption" class="flex flex-col gap-4 bg-slate-50 dark:bg-white/[0.03] p-4 rounded-2xl border border-slate-100 dark:border-white/5">
-        <span class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-white/45">Caption Style</span>
+      <div v-if="caption" class="flex flex-col gap-4 bg-slate-50 dark:bg-[#632bfc]/[0.03] p-4 rounded-2xl border border-slate-100 dark:border-[#632bfc]/10">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#632bfc]/70 dark:text-[#9c6ffd]/70">Caption Style</span>
         
         <div class="flex items-center gap-3">
           <span class="text-xs font-bold text-slate-500 dark:text-white/60 w-10">Size</span>
-          <input type="range" v-model.number="captionSize" min="14" max="42" step="1" @input="render" class="flex-1 h-1.5 rounded-full appearance-none bg-slate-200 dark:bg-white/10 accent-pink-500 cursor-pointer" />
+          <input type="range" v-model.number="captionSize" min="14" max="42" step="1" @input="render" class="flex-1 h-1.5 rounded-full appearance-none bg-slate-200 dark:bg-white/10 accent-[#632bfc] cursor-pointer" />
           <span class="text-xs font-bold text-slate-500 dark:text-white/60 w-8 text-right">{{ captionSize }}</span>
         </div>
         
@@ -131,7 +142,7 @@
               :style="{ background: c }"
               @click="captionColor = c; render()"
               class="w-6 h-6 rounded-full border-2 cursor-pointer transition-all duration-200 shadow-sm"
-              :class="captionColor === c ? 'border-violet-500 dark:border-white scale-125' : 'border-black/10 dark:border-white/20 hover:scale-110'"
+              :class="captionColor === c ? 'border-[#632bfc] scale-125 shadow-[0_0_0_2px_rgba(99,43,252,0.25)]' : 'border-black/10 dark:border-white/20 hover:scale-110'"
             />
           </div>
         </div>
@@ -144,7 +155,7 @@
           @click="downloadImage"
           class="group flex items-center justify-center gap-2 w-full py-4 rounded-xl text-base font-bold tracking-wide transition-all duration-300 border-none"
           :class="hasPhoto
-            ? 'bg-gradient-to-r from-violet-600 to-pink-500 text-white shadow-lg hover:shadow-xl hover:-translate-y-1 cursor-pointer'
+            ? 'bg-[#632bfc] text-white shadow-[0_4px_20px_rgba(99,43,252,0.35)] hover:bg-[#5520e8] hover:shadow-[0_8px_32px_rgba(99,43,252,0.55)] hover:-translate-y-1 cursor-pointer'
             : 'bg-slate-100 dark:bg-white/5 text-slate-400 dark:text-white/30 cursor-not-allowed'"
         >
           <Icon icon="ph:download-simple-bold" class="w-5 h-5 group-hover:animate-bounce" v-if="hasPhoto" />
@@ -189,7 +200,7 @@ let touchState = { lastX: 0, lastY: 0, pinchDist: 0 }
 let photoImg = null
 let frameImg = null
 
-const colorSwatches = ['#ffffff', '#f1f5f9', '#fce7f3', '#fef08a', '#c4b5fd', '#6ee7b7', '#fca5a5', '#0f172a']
+const colorSwatches = ['#ffffff', '#f1f5f9', '#fce7f3', '#fef08a', '#632bfc', '#6ee7b7', '#fca5a5', '#0f172a']
 
 onMounted(async () => { await loadFrameImage(); render() })
 watch(() => props.frameData, async () => { await loadFrameImage(); render() })
@@ -342,26 +353,26 @@ input[type="range"]::-webkit-slider-thumb {
   width: 18px; height: 18px;
   border-radius: 50%;
   background: white;
-  border: 4px solid #7c3aed;
+  border: 4px solid #632bfc;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(124,58,237,0.4);
+  box-shadow: 0 2px 6px rgba(99,43,252,0.4);
   transition: all 0.2s;
 }
 input[type="range"]::-webkit-slider-thumb:hover {
   transform: scale(1.1);
-  box-shadow: 0 3px 8px rgba(124,58,237,0.6);
+  box-shadow: 0 3px 8px rgba(99,43,252,0.6);
 }
 input[type="range"]::-moz-range-thumb {
   width: 18px; height: 18px;
   border-radius: 50%;
   background: white;
-  border: 4px solid #7c3aed;
+  border: 4px solid #632bfc;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(124,58,237,0.4);
+  box-shadow: 0 2px 6px rgba(99,43,252,0.4);
   transition: all 0.2s;
 }
 input[type="range"]::-moz-range-thumb:hover {
   transform: scale(1.1);
-  box-shadow: 0 3px 8px rgba(124,58,237,0.6);
+  box-shadow: 0 3px 8px rgba(99,43,252,0.6);
 }
 </style>
